@@ -20,26 +20,38 @@ function renderButtons() {
             method: "GET"
           }).then(function(response) {
             console.log(response);
-              for (i=0; i < response.data.length; i++) {
-              var gif = $("<img>");
-              var data = response.data[i]
-              gif.addClass("gifClass");
-              gif.attr("data-state", "still");
-              gif.attr("data-still", response.data[i].images.fixed_width_still.url);
-              gif.attr("data-animate", response.data[i].images.fixed_width.url);
-              
-              gif.attr("src", response.data[i].images.fixed_width_still.url);
-              
-                            
-              $("#gifPlace").append(gif);
-            }
 
-            /*
-           $(".gifClass").click(function() {
-            if ($(this) = gif.attr("src", response.data[i].images.fixed_width_still.url)) {
-              
+              for (i=0; i < response.data.length; i++) {
+                var rating = $("<h5>");
+                rating.text("Rating: " + response.data[i].rating);
+                $("#gifPlace").append(rating);
+                
+
+                var gif = $("<img>");
+                gif.addClass("gifClass");
+
+                gif.attr("data-still", response.data[i].images.fixed_width_still.url);
+                gif.attr("data-animate", response.data[i].images.fixed_width.url)
+
+                gif.attr("data-current", "still");
+                gif.attr("src", response.data[i].images.fixed_width_still.url);
+
+                $("#gifPlace").append(gif);
+                
+
             }
-            });*/
+            $(".gifClass").click(function() {
+              if ($(this).attr("data-current") == "still") {
+                $(this).attr("data-current", "animate");
+                var animateUrl = $(this).attr("data-animate");
+                $(this).attr("src", animateUrl);
+              }
+              else if ($(this).attr("data-current") == "animate") {
+                $(this).attr("data-current", "still");
+                var stillUrl = $(this).attr("data-still");
+                $(this).attr("src", stillUrl);
+              }
+            });
         });
     });
 }
