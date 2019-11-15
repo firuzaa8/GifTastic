@@ -1,0 +1,17 @@
+body {
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+}
+
+.btn {
+    padding: 12px;
+    margin-right: 20px;
+    width: 200px;
+    margin-top: 20px;
+}
+#row1 {
+    width: 1000px;
+}
+#gifPlace {
+    display: inline-block;
+}

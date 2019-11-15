@@ -22,7 +22,8 @@ function renderButtons() {
             console.log(response);
 
               for (i=0; i < response.data.length; i++) {
-                var rating = $("<h5>");
+                var rating = $("<h6>");
+                $("<button>").addClass("ratingTag")
                 rating.text("Rating: " + response.data[i].rating);
                 $("#gifPlace").append(rating);
                 
